@@ -37,13 +37,12 @@ int main(int argc, char *argv[])
     int pi_fd = accept(server_fd, (struct sockaddr *)&address,  
                        (socklen_t*)&addrlen);
 
-    char buffer[10024] ;
+    char buffer[1024] ;
     int posture_value = read(pi_fd, buffer, 1024); 
     string buff (buffer);
     string start ("notify-send \"Posture Perfection\" \"");
     string end ("\" -u critical --icon $HOME/code/Uni/PosturePerfection/docs/images/posture-logo-no-text.png");
     string out = start + buff + end;
-    cout << out << "\n";
     system(out.c_str());
     cout << buff; 
     shutdown(server_fd, SHUT_RDWR);
